@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order with Auto-Address</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; overflow-x: hidden; background-color: #f9f9f9; }
+        
+        header { 
+            width: 100%; height: 4rem; border-bottom: 1px solid #ccc; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; background: white; z-index: 100;
+            padding: 0 5%; box-sizing: border-box;
+        }
+
+        .logo { height: 45px; width: 45px; object-fit: contain; }
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-links h2 { font-size: 1rem; margin: 0; cursor: pointer; color: #333; }
+        .order-trigger { padding: 8px 18px; border: 2px solid #333; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        #cart-count { background-color: #ffeb3b; padding: 2px 6px; border-radius: 50%; }
+
+        #product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 40px 5%; }
+        .card { background: white; border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .iimg { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .hidden { display: none !important; }
+        
+        .controls { display: flex; justify-content: center; align-items: center; gap: 15px; min-height: 45px; }
+        .controls button { padding: 8px 16px; cursor: pointer; border: 1px solid #ccc; background: white; border-radius: 4px; }
+
+        #orderSidebar { 
+            position: fixed; top: 0; right: 0; width: 400px; max-width: 95%; 
+            height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.15); 
+            transition: 0.4s ease-in-out; transform: translateX(100%); 
+            z-index: 1000; padding: 25px; box-sizing: border-box; overflow-y: auto;
+        }
+        #orderSidebar.active { transform: translateX(0); }
+        
+        .order-item-detail { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; padding: 12px 0; }
+        .order-item-detail img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
+        
+        .address-section { margin-top: 15px; background: #f4f4f4; padding: 15px; border-radius: 8px; }
+        .address-section input, .address-section textarea { 
+            width: 100%; margin-top: 8px; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;
+        }
+
+        .location-btn {
+            background: #007bff; color: white; border: none; padding: 10px; 
+            width: 100%; border-radius: 4px; margin-top: 10px; cursor: pointer; font-weight: bold;
+        }
+        .location-status { font-size: 0.8rem; margin-top: 5px; color: #666; display: block; }
+
+        .checkout-btn {
+            width: 100%; padding: 15px; background: #25D366; color: white; 
+            border: none; border-radius: 6px; cursor: pointer; font-size: 1.1rem; 
+            font-weight: bold; margin-top: 15px;
+        }
+        .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; float: right; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img class="logo" src="logo.jpg" alt="Logo">
+        <div class="nav-links">
+            <h2>Products</h2>
+            <h2>About Us</h2>
+            <div class="order-trigger" onclick="toggleSidebar()">
+                Orders: <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div id="orderSidebar">
+        <button class="close-btn" onclick="toggleSidebar()">×</button>
+        <h2 style="margin-top: 0;">Checkout</h2>
+        
+        <div id="sidebar-content"></div>
+
+        <div id="sidebar-footer">
+            <hr>
+            <h3>Total: Rs <span id="total-price">0</span></h3>
+            
+            <div class="address-section" id="address-form">
+                <label><strong>Contact & Delivery:</strong></label>
+                <input type="text" id="cust-name" placeholder="Your Name">
+                <textarea id="cust-address" rows="3" placeholder="Street / Landmark / Area"></textarea>
+                
+                <button class="location-btn" onclick="getLocation()">📍 Tag My Current Location</button>
+                <span id="location-display" class="location-status">Location not attached</span>
+            </div>
+
+            <button class="checkout-btn" onclick="sendToWhatsApp()">Order on WhatsApp</button>
+        </div>
+    </div>
+
+    <section id="product-grid"></section>
+
+    <script>
+        const products = [
+            { id: 0, name: "Alu Bhujiya", price: 80, image: "alu.jpg", count: 0 },
+            { id: 1, name: "Atta", price: 200, image: "atta.jpg", count: 0 },
+            { id: 2, name: "Biscuit", price: 50, image: "bikkit.jpg", count: 0 }
+        ];
+
+        let userCoords = null;
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="card">
+                    <img src="${p.image}" class="iimg" onerror="this.src='https://via.placeholder.com/150'">
+                    <h3>${p.name}</h3>
+                    <p>Rs ${p.price}</p>
+                    <div class="controls">
+                        <button class="${p.count > 0 ? 'hidden' : ''}" onclick="changeQty(${p.id}, 1)">Add to Cart</button>
+                        <div class="${p.count > 0 ? '' : 'hidden'}">
+                            <button onclick="changeQty(${p.id}, -1)">-</button>
+                            <span style="margin: 0 10px; font-weight: bold;">${p.count}</span>
+                            <button onclick="changeQty(${p.id}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function changeQty(productId, amount) {
+            products[productId].count += amount;
+            if (products[productId].count < 0) products[productId].count = 0;
+            renderProducts();
+            updateSidebar();
+        }
+
+        function updateSidebar() {
+            const content = document.getElementById('sidebar-content');
+            const selectedItems = products.filter(p => p.count > 0);
+            let total = 0;
+            let totalItems = 0;
+
+            content.innerHTML = selectedItems.map(p => {
+                total += (p.count * p.price);
+                totalItems += p.count;
+                return `
+                    <div class="order-item-detail">
+                        <img src="${p.image}" onerror="this.src='https://via.placeholder.com/50'">
+                        <div>
+                            <strong>${p.name}</strong><br>
+                            ${p.count} x Rs ${p.price} = Rs ${p.count * p.price}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            if(selectedItems.length === 0) {
+                content.innerHTML = "<p>Your cart is empty.</p>";
+                document.getElementById('address-form').classList.add('hidden');
+            } else {
+                document.getElementById('address-form').classList.remove('hidden');
+            }
+
+            document.getElementById('total-price').innerText = total;
+            document.getElementById('cart-count').innerText = totalItems;
+        }
+
+        function toggleSidebar() {
+            document.getElementById('orderSidebar').classList.toggle('active');
+        }
+
+        // --- UPDATED GEOLOCATION & AUTO-FEED LOGIC ---
+        async function getLocation() {
+            const status = document.getElementById('location-display');
+            const addressBox = document.getElementById('cust-address');
+
+            if (navigator.geolocation) {
+                status.innerText = "Locating...";
+                
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    userCoords = { lat, lng };
+
+                    status.innerText = "Finding address...";
+
+                    try {
+                        // Using OpenStreetMap's Nominatim API (Free/No Key)
+                        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`);
+                        const data = await response.json();
+                        
+                        if (data.display_name) {
+                            // Feeding the address into the textarea
+                            addressBox.value = data.display_name;
+                            status.innerText = `✅ Address auto-filled!`;
+                        } else {
+                            status.innerText = `✅ Coordinates Tagged (Address not found)`;
+                        }
+                    } catch (error) {
+                        console.error("Error fetching address:", error);
+                        status.innerText = `✅ Coords Tagged (Network Error fetching address)`;
+                    }
+                }, 
+                (error) => {
+                    status.innerText = "❌ Error: Permission Denied.";
+                    alert("Please allow location access to use this feature.");
+                });
+            } else {
+                status.innerText = "❌ Browser doesn't support location.";
+            }
+        }
+
+        function sendToWhatsApp() {
+            const name = document.getElementById('cust-name').value;
+            const address = document.getElementById('cust-address').value;
+            const selectedItems = products.filter(p => p.count > 0);
+            const total = document.getElementById('total-price').innerText;
+
+            if (!name || !address) {
+                alert("Please provide your name and address.");
+                return;
+            }
+
+            let message = `*NEW ORDER RECEIVED*%0A`;
+            message += `--------------------------%0A`;
+            message += `*Customer:* ${name}%0A`;
+            message += `*Address:* ${address}%0A`;
+            
+            if(userCoords) {
+                // Link format for Google Maps
+                const mapLink = `https://www.google.com/maps?q=${userCoords.lat},${userCoords.lng}`;
+                message += `*Map Link:* ${mapLink}%0A`;
+            }
+
+            message += `--------------------------%0A`;
+            message += `*Items:*%0A`;
+            selectedItems.forEach(item => {
+                message += `• ${item.name} (x${item.count}) - Rs ${item.count * item.price}%0A`;
+            });
+            message += `--------------------------%0A`;
+            message += `*Total Amount: Rs ${total}*%0A`;
+
+            const phoneNumber = "7983427187";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            window.open(whatsappURL, '_blank');
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
