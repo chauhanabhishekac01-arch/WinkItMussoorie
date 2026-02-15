@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Order with 6 Persistent Collections</title>
+    <title>Wink It Mussoorie</title>
     <style>
         /* Global Reset */
         * { box-sizing: border-box; }
@@ -89,18 +89,18 @@
         .collection-card:hover{ transform: translateY(-10px); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
         .image-preview-box {
-            border: 1px solid #ddd; display: grid; width: 100%; max-width: 160px; 
+            display: grid; width: 100%; max-width: 160px; 
             grid-template-columns: 1fr 1fr; margin: 0 auto 10px auto; 
-            background: #eee; overflow: hidden; border-radius: 4px;
+            background: none; overflow: hidden; border-radius: 25px;
         }
-        .image-preview-card { border: 0.5px solid #fff; aspect-ratio: 1/1; }
-        .image-preview-card img { width: 100%; height: 100%; display: block; object-fit: cover; border: 0.5px solid purple;}
+        .image-preview-card { border: 0.5px solid #fff; aspect-ratio: 1/1; background-color: none; border-radius: 24px;}
+        .image-preview-card img { width: 100%; height: 100%; display: block; object-fit: cover; border: 0.5px solid purple; border-radius: 24px;}
 
         /* --- PRODUCT SLIDER --- */
         #product-slider {
             position: fixed; 
             top: 4rem;
-            
+            padding-bottom: 10rem;
             left: 0; 
             width: 100%; 
             height: calc(100svh - 4rem);
@@ -135,23 +135,27 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
             width: 100%; 
             margin: auto;
+            height: max-content;
         }
         .card:hover{ box-shadow: -5px 0 25px rgba(0,0,0,0.5); transform: translateY(-10px); }
         
-        .img-container { width: 100%; height: 200px; border-radius: 8px; overflow: hidden; margin-bottom: 10px; background: #f0f0f0; }
+        .img-container { width: 100%; height: clamp(8rem, 17vw, 17rem); border-radius: 8px; overflow: hidden; margin-bottom: 10px; background: #f0f0f0; }
         .iimg { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        .variant-selector { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; margin: 10px 0; }
+        .variant-selector { display: flex; justify-content: center; flex-direction: column; flex-wrap: wrap; gap: 5px; margin: 10px 0; }
         .variant-btn { 
             display: flex; justify-content: space-between; gap: 10px; padding: 4px 10px; 
             font-size: 0.7rem; border: 1px solid #ccc; background: white; border-radius: 20px; 
             cursor: pointer; min-width: 100px;
         }
         .variant-btn.active { background: green; color: white; border-color: #333; }
+        .variant-btn span{
+            font-size: 1rem;
+        }
         .unit-text { opacity: 0.8; font-weight: normal; }
 
         .controls { display: flex; justify-content: center; align-items: center; gap: 10px; min-height: 40px; }
-        .controls button { padding: 5px 10px; cursor: pointer; border: 1px solid #333; background: white; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+        .controls button { padding: 5px 10px; cursor: pointer; border: 1px solid #333; background: white; border-radius: 4px; font-weight: bold; font-size: 1.5rem; }
         .controls button:hover{ background: green; color: white; }
         .qty-btn { background: #ffeb3b !important; border: none !important; }
 
@@ -389,7 +393,7 @@
                             </button>
                         `).join('')}
                     </div>
-                    <p style="margin: 5px 0;"><strong>Rs ${currentVar.price}</strong></p>
+                    <p style="margin: 5px 0; font-size: 1.3rem"><strong>Rs ${currentVar.price}</strong></p>
                     <div class="controls">
                         <button class="${currentVar.count > 0 ? 'hidden' : ''}" onclick="changeQty(${p.id}, 1, '${catId}')">Add</button>
                         <div class="${currentVar.count > 0 ? '' : 'hidden'}">
