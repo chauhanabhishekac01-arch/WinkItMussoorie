@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wink It Mussoorie</title>
+    <title>Order with 6 Persistent Collections</title>
     <style>
         /* Global Reset */
         * { box-sizing: border-box; }
@@ -354,11 +354,13 @@
         function toggleSlider() { 
             document.getElementById('orderSidebar').classList.remove('active');
             document.getElementById('product-slider').classList.toggle('active'); 
+            updateSidebar(); // Refresh visibility logic
         }
 
         function toggleSidebar() { 
             document.getElementById('product-slider').classList.remove('active');
             document.getElementById('orderSidebar').classList.toggle('active'); 
+            updateSidebar(); // Refresh visibility logic
         }
 
         function openCollection(catId, catName) {
@@ -367,6 +369,7 @@
             renderProducts(catId);
             document.getElementById('orderSidebar').classList.remove('active');
             document.getElementById('product-slider').classList.add('active');
+            updateSidebar(); // Ensure popup logic is applied
         }
 
         function renderProducts(catId) {
@@ -468,11 +471,16 @@
             document.body.style.marginBottom = totalItems > 0 ? "6rem" : "0";
 
             const popup = document.getElementById('cart-popup');
-            if(totalItems > 0) {
+            const isCheckoutOpen = document.getElementById('orderSidebar').classList.contains('active');
+            
+            // Logic: Show popup only if items > 0 AND Checkout is NOT open
+            if(totalItems > 0 && !isCheckoutOpen) {
                 popup.classList.remove('hidden');
                 document.getElementById('popup-count').innerText = totalItems;
                 document.getElementById('popup-images-container').innerHTML = [...new Set(recentAdditions)].slice(0, 5).map(img => `<img src="${img}" onerror="this.src='https://via.placeholder.com/30'">`).join('');
-            } else { popup.classList.add('hidden'); }
+            } else { 
+                popup.classList.add('hidden'); 
+            }
         }
 
         async function getLocation() {
