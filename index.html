@@ -178,7 +178,7 @@
         }
         
         #orderSidebar.active { transform: translateX(0); }
-        .order-item-detail { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; padding: 12px 0; }
+        .order-item-detail { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; padding: 12px 0;}
         .order-item-detail img { width: 45px; height: 45px; object-fit: cover; border-radius: 4px; }
         
         .sidebar-controls { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
@@ -217,12 +217,12 @@
             .collection-grid { grid-template-columns: 1fr 1fr; }
             #product-grid { grid-template-columns: 1fr 1fr; }
             .atext{ order:1;}
-            .logo {height: auto; /* Changed from max-content */
-                width: auto;   /* Changed from max-content */
+            .logo {height: auto; 
+                width: auto; 
                 color: white; 
-                font-size: clamp(1rem, 3vw, 2rem); /* Reduced max clamp slightly for better wrapping */
+                font-size: clamp(1rem, 3vw, 2rem); 
                 margin: 0;
-                line-height: 1.1; /* Keeps lines close when wrapped */
+                line-height: 1.1; 
                 word-wrap: break-word; 
                 overflow-wrap: break-word;}
         }
@@ -270,8 +270,9 @@
             <h3>Total Amount: Rs <span id="total-price">0</span></h3>
             <div class="address-section">
                 <input type="text" id="cust-name" placeholder="Your Name">
-                <textarea id="cust-address" rows="3" placeholder="Use share location below" readonly></textarea>
-                <button style="background: #007bff; color: white; border: none; padding: 10px; width: 100%; border-radius: 4px; margin-top: 10px; cursor: pointer;" onclick="getLocation()">📍 Share Location</button>
+                <textarea id="cust-address" rows="3" placeholder="Address" ></textarea>
+                <h6>OR</h6>
+                <button style="background: #007bff; color: white; border: none; padding: 10px; width: 100%; border-radius: 4px; margin-top: 10px; cursor: pointer;" onclick="getLocation()">📍 Share Current Location</button>
                 <span id="location-display" style="font-size: 11px; color: #666; display: block; margin-top: 5px;"></span>
             </div>
             <button class="checkout-btn" onclick="confirmAndSend()"><p>🔒 </p>Order via WhatsApp</button>
@@ -338,7 +339,7 @@
 
         let recentAdditions = [];
         let activeCategory = "";
-        let userCoords = null; // Stores coordinates for Google Maps link
+        let userCoords = null; 
 
         function renderCollections() {
             document.getElementById('collection-grid').innerHTML = collections.map(c => `
@@ -354,13 +355,13 @@
         function toggleSlider() { 
             document.getElementById('orderSidebar').classList.remove('active');
             document.getElementById('product-slider').classList.toggle('active'); 
-            updateSidebar(); // Refresh visibility logic
+            updateSidebar(); 
         }
 
         function toggleSidebar() { 
             document.getElementById('product-slider').classList.remove('active');
             document.getElementById('orderSidebar').classList.toggle('active'); 
-            updateSidebar(); // Refresh visibility logic
+            updateSidebar(); 
         }
 
         function openCollection(catId, catName) {
@@ -369,7 +370,7 @@
             renderProducts(catId);
             document.getElementById('orderSidebar').classList.remove('active');
             document.getElementById('product-slider').classList.add('active');
-            updateSidebar(); // Ensure popup logic is applied
+            updateSidebar(); 
         }
 
         function renderProducts(catId) {
@@ -448,7 +449,7 @@
                         <div class="order-item-detail">
                             <img src="${p.image}" onerror="this.src='https://via.placeholder.com/45'">
                             <div>
-                                <strong>${p.name} (${vName})</strong><br>
+                                <strong>${p.name} (${v.unit})</strong><br>
                                 Rs ${v.price}
                                 <div class="sidebar-controls">
                                     <button class="sidebar-qty-btn" onclick="sidebarChangeQty(${p.id}, '${vName}', -1)">-</button>
@@ -473,7 +474,6 @@
             const popup = document.getElementById('cart-popup');
             const isCheckoutOpen = document.getElementById('orderSidebar').classList.contains('active');
             
-            // Logic: Show popup only if items > 0 AND Checkout is NOT open
             if(totalItems > 0 && !isCheckoutOpen) {
                 popup.classList.remove('hidden');
                 document.getElementById('popup-count').innerText = totalItems;
@@ -503,14 +503,32 @@
         }
 
         function confirmAndSend() {
-            if (document.getElementById('total-price').innerText == "0") { alert("Cart is empty!"); return; }
+            const name = document.getElementById('cust-name').value;
+            const address = document.getElementById('cust-address').value;
+
+            if (document.getElementById('total-price').innerText == "0") { 
+                alert("Cart is empty!"); 
+                return; 
+            }
+            
+            // Validate name and address fields
+            if (!name && !address) {
+                alert("Please enter your Name and Address.");
+                return;
+            } else if (!name) {
+                alert("Please enter your Name.");
+                return;
+            } else if (!address) {
+                alert("Please enter your Address.");
+                return;
+            }
+
             if (confirm("Safely proceed to Whatsapp")) sendToWhatsApp();
         }
 
         function sendToWhatsApp() {
             const name = document.getElementById('cust-name').value;
             const address = document.getElementById('cust-address').value;
-            if (!name || !address) { alert("Please fill Name and Address"); return; }
             
             const subtotal = document.getElementById('subtotal-val').innerText;
             const delivery = document.getElementById('delivery-val').innerText;
