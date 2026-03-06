@@ -975,9 +975,23 @@ if (statsSection) {
 
     document.getElementById('location-btn').addEventListener('click', async () => {
     const display = document.getElementById('location-display');
-    if (navigator.geolocation) {
-        display.innerText = "Locating...";
-        navigator.geolocation.getCurrentPosition(async (pos) => {
+
+    if (!navigator.geolocation) {
+        display.innerText = "❌ Geolocation is not supported by your browser.";
+        return;
+    }
+
+    display.innerText = "Locating...";
+
+    // Added options for better accuracy and a timeout
+    const geoOptions = {
+        enableHighAccuracy: true, 
+        timeout: 10000, // Wait 10 seconds before giving up
+        maximumAge: 0   // Force fresh location, don't use a cached one
+    };
+
+    navigator.geolocation.getCurrentPosition(
+        async (pos) => {
             userCoords = { lat: pos.coords.latitude, lon: pos.coords.longitude };
             
             // Calculate distance
@@ -986,8 +1000,8 @@ if (statsSection) {
                 userCoords.lat, userCoords.lon
             );
 
-            locationTagged = true; // ✅ Mark location as fed
-            updateSidebar(); // ✅ Refresh sidebar with new charges
+            locationTagged = true; 
+            updateSidebar(); 
 
             try {
                 const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`);
@@ -998,9 +1012,27 @@ if (statsSection) {
                 custAddressInput.value = `Lat: ${userCoords.lat}, Lon: ${userCoords.lon}`;
                 display.innerText = `✅ Tagged (${currentDistance.toFixed(1)} km)`; 
             }
-        }, () => { display.innerText = "📢 Please Turn on Location/GPS Manually"; });
-    }
-    });
+        }, 
+        (err) => {
+            // Detailed error handling for why the prompt didn't work
+            switch(err.code) {
+                case err.PERMISSION_DENIED:
+                    display.innerText = "📢 Permission Denied. Please enable location in your browser settings.";
+                    break;
+                case err.POSITION_UNAVAILABLE:
+                    display.innerText = "📢 Location information unavailable. Check your GPS signal.";
+                    break;
+                case err.TIMEOUT:
+                    display.innerText = "📢 Request timed out. Try again.";
+                    break;
+                default:
+                    display.innerText = "📢 An unknown error occurred.";
+                    break;
+            }
+        }, 
+        geoOptions
+    );
+});
     function showThemePopup(text) {
     let popup = document.getElementById('theme-toast');
     if (!popup) {
