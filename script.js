@@ -1025,21 +1025,32 @@ if (statsSection) {
     searchInput.focus();
 });
 
-    document.getElementById('location-btn').addEventListener('click', async () => {
+   document.getElementById('location-btn').addEventListener('click', async () => {
     const display = document.getElementById('location-display');
+    
     if (navigator.geolocation) {
-        display.innerText = "Locating...";
+        let seconds = 0;
+        display.innerText = `Locating... (0s)`;
+
+        // Start the timer
+        const timer = setInterval(() => {
+            seconds++;
+            display.innerText = `Locating... (${seconds}s)`;
+        }, 1000);
+
         navigator.geolocation.getCurrentPosition(async (pos) => {
+            // Stop the timer immediately upon success
+            clearInterval(timer); 
+
             userCoords = { lat: pos.coords.latitude, lon: pos.coords.longitude };
             
-            // Calculate distance
             currentDistance = calculateDistance(
                 SHOP_COORDS.lat, SHOP_COORDS.lon, 
                 userCoords.lat, userCoords.lon
             );
 
-            locationTagged = true; // ✅ Mark location as fed
-            updateSidebar(); // ✅ Refresh sidebar with new charges
+            locationTagged = true;
+            updateSidebar();
 
             try {
                 const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`);
@@ -1050,9 +1061,17 @@ if (statsSection) {
                 custAddressInput.value = `Lat: ${userCoords.lat}, Lon: ${userCoords.lon}`;
                 display.innerText = `✅ Tagged (${currentDistance.toFixed(1)} km)`; 
             }
-        }, () => { display.innerText = "ℹ️ Please turn on Location/GPS and Try again"; });
+        }, () => { 
+            // Stop the timer if there is an error
+            clearInterval(timer);
+            display.innerText = "ℹ️ Please turn on Location/GPS and Try again"; 
+        }, {
+            enableHighAccuracy: true, // Optional: forces better GPS usage
+            timeout: 15000,           // Optional: stops trying after 15 seconds
+            maximumAge: 0
+        });
     }
-    });
+});
     function showThemePopup(text) {
     let popup = document.getElementById('theme-toast');
     if (!popup) {
@@ -1264,3 +1283,4 @@ reviewContainer.addEventListener('mousedown', () => {
 }
 
 });
+
