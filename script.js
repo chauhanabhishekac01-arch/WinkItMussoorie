@@ -615,7 +615,7 @@ window.addEventListener('resize', updateUI);
         6: "Grocery & Kitchen",
         9: "Beauty and Personal Care",
         15: "House Hold Essentials",
-        16: "Partner stores"
+        16: "Collaborate Stores"
     };
 
     collectionGrid.innerHTML = collections.map((c, i) => {
@@ -1338,3 +1338,4 @@ reviewContainer.addEventListener('mousedown', () => {
 }
 
 });
+
