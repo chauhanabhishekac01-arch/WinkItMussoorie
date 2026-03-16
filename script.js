@@ -501,8 +501,8 @@ startAutoPlay();
                             { id: 1110,   name: "Choley Bhature",                                                     image: "omicholeb.jpg",            cat: "partneromif",       subcat: "Snacks",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 120, count: 0, unit: "2pc" } } },
                             { id: 1111,   name: "Cold Snadwich (Mayonnaise)",                                                     image: "omicsandwich.jpg",            cat: "partneromif",       subcat: "Snacks",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 70, count: 0, unit: "1pc" } } },
 
-                            { id: 1112,   name: "Idli Sambhar",                                                     image: "omicholeb.jpg",            cat: "partneromif",       subcat: "South Indian",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 120, count: 0, unit: "2pc" } } },
-                            { id: 1113,   name: "Medu Vada",                                                     image: "omicholeb.jpg",            cat: "partneromif",       subcat: "South Indian",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 120, count: 0, unit: "2pc" } } },
+                            { id: 1112,   name: "Idli Sambhar",                                                     image: "omii.jpg",            cat: "partneromif",       subcat: "South Indian",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 120, count: 0, unit: "2pc" } } },
+                            { id: 1113,   name: "Medu Vada",                                                     image: "omimvada.jpg",            cat: "partneromif",       subcat: "South Indian",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 120, count: 0, unit: "2pc" } } },
 
                             { id: 1114,   name: "Momos Veg Steamed",                                                     image: "omivm.jpg",            cat: "partneromif",       subcat: "Chinese",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 100, count: 0, unit: "6pc" } } },
                             { id: 1115,   name: "Momos Veg Fried",                                                     image: "omivf.jpg",            cat: "partneromif",       subcat: "Chinese",                   selectedVariant: "Qty",           variants: { "Qty":        { price: 100, count: 0, unit: "6pc" } } },
@@ -962,7 +962,7 @@ if (statsSection) {
     }
 
     function updateCount() {
-        const randomPeople = Math.floor(Math.random() * 11) + 5;
+        const randomPeople = Math.floor(Math.random() * 15) + 8;
         if (countElement) countElement.textContent = randomPeople;
     }
 
@@ -1296,6 +1296,7 @@ whatsappBtn.addEventListener('click', () => {
     const subtotal = document.getElementById('subtotal-val').innerText;
     const delivery = document.getElementById('delivery-val').innerText;
     const total = document.getElementById('total-price').innerText;
+    
     
     if (total == "0" || total == "") { alert("Cart is empty!"); return; }
     if (!name || !address) { alert("Please enter Name and Address."); return; }
