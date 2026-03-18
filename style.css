@@ -30,7 +30,7 @@ header { width: 100%; height: 3.5rem; border-bottom: 1px solid #ccc; display: fl
 }
 .highlight-search > * { backface-visibility: visible; }
 
-.search-container { display: flex; align-items: center; background: white; border-radius: 20px; padding: 2px 10px; margin: 0 10px; flex-grow: 0.5; position: relative; }
+.search-container { display: flex; align-items: center; background: white; border-radius: 20px; padding: 2px 10px; margin: 0 10px; flex-grow: 0.5; position: relative; height: 80%;}
 .search-container input { border: none; outline: none; padding: 5px; width: 100%; border-radius: 20px; font-size: 0.9rem;}
 .search-btn { background: none; border: none; cursor: pointer; font-size: 1.2rem; animation: move 1s linear infinite; border-radius: 5px;}
 
@@ -102,8 +102,7 @@ header { width: 100%; height: 3.5rem; border-bottom: 1px solid #ccc; display: fl
 .image-preview-card { border: 0.5px solid #fff; aspect-ratio: 1/1; border-radius: 15px;}
 .image-preview-card img { width: 100%; height: 100%; display: block; object-fit: cover; border: 0.5px solid purple; border-radius: 15px;}
 
-.ourservice{width: 100%; display: flex; align-items: center; justify-content: center;}
-.scmain{display: flex; align-items: center; justify-content: center;}
+
 
 #product-slider { position: fixed; top: 3.5rem; padding-bottom: 10rem; left: 0; width: 100%; height: calc(100svh - 4rem); background-color: rgb(252, 241, 252); z-index: 1000; transform: translateX(-100%); transition: 0.4s ease-in-out; box-shadow: 5px 0 25px rgba(0,0,0,0.2); overflow-y: auto; border: 2px solid black;}
 #product-slider.active { transform: translateX(0); height: 100svh;}
@@ -696,6 +695,8 @@ h6 { font-size: 1.3rem; margin: 0px; padding: 0px; text-align: center;}
     border-radius: 50px;
 }
 /* The track - Default (Light Mode / Left) */
+.ourservice{width: 100%; display: flex; align-items: center; justify-content: center;}
+.scmain{display: flex; align-items: center; justify-content: center;}
 
 .slider {
     background-color: #FFD700; /* Bright Yellow */
@@ -707,26 +708,27 @@ h6 { font-size: 1.3rem; margin: 0px; padding: 0px; text-align: center;}
     top: 0;
     transition: .4s;
     border-radius: 34px;
+    
     border: 1px solid black; /* Optional: slightly darker yellow border */
 }
 .slider-container {
-            position: relative;
-            width: 90%;
-            /* This ensures the 2:1 ratio automatically */
-            aspect-ratio: 2 / 1; 
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-            background: #222;
-        }
+position: relative;
+    width: 90%; 
+    /* Remove the 'height: 40svh' you had before */
+    aspect-ratio: 4 / 3; 
+    
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #222;
+}
 
         .slider-wrapper {
             display: flex;
-            width: 100%;
-            height: 100%;
-            cursor: grab;
-            
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 100%; /* Inherits the 4:3 shape from the container */
+    cursor: grab;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .slider-wrapper:active {
@@ -734,11 +736,9 @@ h6 { font-size: 1.3rem; margin: 0px; padding: 0px; text-align: center;}
         }
 
         .slider-wrapper img {
-            width: 100%;
+           flex: 0 0 100%; /* Each image takes full width of the 4:3 box */
             height: 100%;
-            object-fit: cover; /* Keeps image from stretching */
-            flex-shrink: 0;
-            user-select: none;
+            object-fit: cover; /* Fills the 4:3 area perfectly */
         }
 
         /* Navigation Buttons */
