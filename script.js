@@ -1,3 +1,10 @@
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('Service Worker Registered!', reg))
+      .catch(err => console.log('Service Worker registration failed:', err));
+  });
+}
 document.addEventListener('DOMContentLoaded', () => {
     // --- INITIALIZATION ---
     if (!history.state) {
@@ -96,13 +103,14 @@ startAutoPlay();
         { q: "7. Are Taxi and Scooty services available?", a: "Yes, the real value in booking through us is that we only connect you with the most reliable and high-quality services. We hand-pick partners who truly offer great value for your money and provide a warm sense of belonging that you won't find just anywhere." },
         { q: "8. What else services do you provide?", a: "At Wink It, we always encourage our cutomers to ask before they assume, the 'Request' button is a custom button for you to explore." },
         { q: "9. Who are you Collaborate Store?", a: "We have a wide variety of Collaboraters on of the most famouse are Omi's Sweets in Landour and Chacha ka Dhabba in Kulri." },
-        { q: "10. How do you earn?", a: "Everything will be bought and on MRP, our only earning is the delivery charges." }
+        { q: "10. Will the food be just as the images show?", a: "While the images provide you a general view of the product, we don't promise to deliver the exact thing shown in the images." }
     ];
     const collections = [
         { id: "partneromi", name: "Omi's Sweets",                   previews: ["omi.jpg"] },
         { id: "partneromif", name: "Omi's Food",                    previews: ["omifo.jpg"] },
         { id: "garrison", name: "The Garrison",                     previews: ["glogo.jpg"] },
-        { id: "aavi", name: "Aavi Everyday Store",                  previews: ["aavi.jpg"] },
+        { id: "tou", name: "Taste of Uttarakhand",                     previews: ["gad.jpg"] },
+        /*{ id: "aavi", name: "Aavi Everyday Store",                  previews: ["aavi.jpg"] },*/
         { id: "beverages", name: "Drinks and Juices",               previews: ["dj.jpg"] },
         { id: "snacks", name: "Chips and Namkeens",                 previews: ["cn.jpg"] },
         { id: "biscuits", name: "Bakery and Biscuits",              previews: ["bb.jpg"] },
@@ -126,7 +134,7 @@ startAutoPlay();
     ];
 
     const products = [
-/*Drink*/                { id: 1,   name: "Bottle-Pepsi",                                                    image: "dpepsi.jpg",            cat: "beverages",               subcat: "Cold Drink",                   selectedVariant: "S",          variants: { "S":        { price: 40, count: 0, unit: "750ml" }, "L": { price: 90, count: 0, unit: "2L" } } },
+/*Drink*/                { id: 1,   name: "Bottle-Pepsi",                                                    image: "dpepsi.jpg",            cat: "beverages",               subcat: "Cold Drink",                   selectedVariant: "S",          variants: { "S":        { price: 40, count: 0, unit: "750ml" }, "L": { price: 90, count: 0, unit: "2L" }, alt: "Freshly steamed vegetable momos - 6 pieces"} },
                          { id: 2,   name: "Bottle-Coca-Cola",                                                image: "dcokeb.jpg",            cat: "beverages",               subcat: "Cold Drink",                   selectedVariant: "S",          variants: { "S":        { price: 40, count: 0, unit: "750ml" }, "L": { price: 90, count: 0, unit: "2L" } } },
                          { id: 3,   name: "Sprite",                                                          image: "dsprite.jpg",           cat: "beverages",               subcat: "Cold Drink",                   selectedVariant: "S",          variants: { "S":        { price: 40, count: 0, unit: "750ml" }, "L": { price: 90, count: 0, unit: "2L" } } },
                          { id: 31,  name: "Can-Coca-Cola",                                                   image: "dcokec.jpg",            cat: "beverages",               subcat: "Cold Drink",                   selectedVariant: "S",          variants: { "S":        { price: 40, count: 0, unit: "300ml" } } },
@@ -243,19 +251,19 @@ startAutoPlay();
                 
 
 /*Kurkure*/             { id: 4001, name: "Kurkure Chutney",                                                image: "skurkurec.jpg",         cat: "snacks",                   subcat: "Kurkure",                    selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "75g" } } },
-                        { id: 4002, name: "Kurkure Chilli",                                                 image: "skurkurecc.jpg",        cat: "snacks",                   subcat: "Kurkure",                    selectedVariant: "L",           variants: { "L":        {price: 25, count: 0, unit: "75g" } } },
+                        { id: 4002, name: "Kurkure Chilli",                                                 image: "skurkurecc.jpg",        cat: "snacks",                   subcat: "Kurkure",                    selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "75g" } } },
                         { id: 4003, name: "Kurkure Masala",                                                 image: "skurkurem.jpg",         cat: "snacks",                   subcat: "Kurkure",                    selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "75g" } } },
                         { id: 4004, name: "Kurkure Puffcorn",                                               image: "skurkurep.jpg",         cat: "snacks",                   subcat: "Kurkure",                    selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "75g" } } },
                         { id: 4005, name: "Kurkure Schezwan Chutney",                                       image: "skurkuresc.jpg",        cat: "snacks",                   subcat: "Kurkure",                    selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "75g" } } },
 
-/*Lays*/                { id: 4006, name: "Lay's India's M",                                                image: "slaysb.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
-                        { id: 4007, name: "Lay's American",                                                 image: "slaysg.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
-                        { id: 4008, name: "Lay's Classic",                                                  image: "slaysy.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
-                        { id: 4009, name: "Lay's Chile Limon",                                              image: "slaysc.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
-                        { id: 4010, name: "Lay's Crispz",                                                   image: "slayscr.jpg",           cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
-                        { id: 4011, name: "Lay's Spanish Tomato Tango",                                     image: "slayss.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
-                        { id: 4012, name: "Lay's Sizzlin Hot",                                              image: "slayssh.jpg",           cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
-                        { id: 4013, name: "Lay's Hot n sweet chilli",                                       image: "slaysw.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 20, count: 0, unit: "200g" } } },
+/*Lays*/                { id: 4006, name: "Lay's India's M",                                                image: "slaysb.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
+                        { id: 4007, name: "Lay's American",                                                 image: "slaysg.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
+                        { id: 4008, name: "Lay's Classic",                                                  image: "slaysy.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
+                        { id: 4009, name: "Lay's Chile Limon",                                              image: "slaysc.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
+                        { id: 4010, name: "Lay's Crispz",                                                   image: "slayscr.jpg",           cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
+                        { id: 4011, name: "Lay's Spanish Tomato Tango",                                     image: "slayss.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
+                        { id: 4012, name: "Lay's Sizzlin Hot",                                              image: "slayssh.jpg",           cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
+                        { id: 4013, name: "Lay's Hot n sweet chilli",                                       image: "slaysw.jpg",            cat: "snacks",                   subcat: "Lays",                       selectedVariant: "L",           variants: { "L":        { price: 25, count: 0, unit: "200g" } } },
 
                         
 /*Pingles */            { id: 4014, name: "Pringles Sour Cream and Onion Potato",                           image: "spinglessc.jpg",        cat: "snacks",                   subcat: "Pingles",                    selectedVariant: "L",           variants: { "L":        { price: 136, count: 0, unit: "141g" } } },
@@ -299,7 +307,7 @@ startAutoPlay();
                         { id: 5013,  name: "Nail Clipper",                                                  image: "pcnc.jpg",              cat: "g",                        subcat: "Grooming",                   selectedVariant: "Piece",       variants: { "Piece":    { price: 80, count: 0, unit: "1pc" } } },
 
 
-/*Dental*/              { id: 5014, name: "Colgate",                                                        image: "pccolgate.jpg",         cat: "g",                        subcat: "Dental",                     selectedVariant: "Tube",        variants: { "Tube":     { price: 120, count: 0, unit: "180ml" } } },
+/*Dental*/              { id: 5014, name: "Colgate",                                                        image: "pccolgate.jpg",         cat: "g",                        subcat: "Dental",                     selectedVariant: "Tube",        variants: { "Tube":     { price: 130, count: 0, unit: "180ml" } } },
                         { id: 5015, name: "Oral-B Pro Clean",                                               image: "pcoralb.jpg",           cat: "g",                        subcat: "Dental",                     selectedVariant: "Piece",       variants: { "Piece":    { price: 50, count: 0, unit: "1pc" } } },
 
 
@@ -417,8 +425,7 @@ startAutoPlay();
           /*Beveragese*/  { id: 1016,   name: "Buransh Squash",                                             image: "omisb.jpg",             cat: "partneromi",               subcat: "Beverages",                 selectedVariant: "Qty",          variants: { "Qty":     { price: 100, count: 0, unit: "750ml" } } },
           /*Beveragese*/  { id: 1017,   name: "Lichi Squash",                                               image: "omisl.jpg",             cat: "partneromi",               subcat: "Beverages",                 selectedVariant: "Qty",          variants: { "Qty":     { price: 100, count: 0, unit: "750ml" } } },
           /*Beveragese*/  { id: 1018,   name: "Pudina Squash",                                              image: "omisp.jpg",             cat: "partneromi",               subcat: "Beverages",                 selectedVariant: "Qty",          variants: { "Qty":     { price: 100, count: 0, unit: "750ml" } } },
-          /*Beveragese*/  { id: 1018,   name: "Malta Squash",                                               image: "omism.jpg",             cat: "partneromi",               subcat: "Beverages",                 selectedVariant: "Qty",          variants: { "Qty":     { price: 100, count: 0, unit: "750ml" } } },
-          /*Beveragese    { id: 1019,   name: "Honey Ginger Lemon Squash",                                  image: "omipm.jpg",             cat: "partneromi",               subcat: "Beverages",                 selectedVariant: "Qty",          variants: { "Qty":     { price: 100, count: 0, unit: "750ml" } } },*/
+          /*Beveragese*/  { id: 1019,   name: "Malta Squash",                                               image: "omism.jpg",             cat: "partneromi",               subcat: "Beverages",                 selectedVariant: "Qty",          variants: { "Qty":     { price: 100, count: 0, unit: "750ml" } } },
 
         /*Namkeen*/       { id: 1020,   name: "Besan Sew",                                                  image: "omibsew.jpg",           cat: "partneromi",               subcat: "Namkeen",                   selectedVariant: "Qty",          variants: { "Qty":     { price: 60, count: 0, unit: "200g" } } },
                           { id: 1021,   name: "Traditional Namkeen",                                        image: "omint.jpg",             cat: "partneromi",               subcat: "Namkeen",                   selectedVariant: "Qty",          variants: { "Qty":     { price: 70, count: 0, unit: "250g" } } },
@@ -560,6 +567,14 @@ startAutoPlay();
 
                             { id: 1170,   name: "Veg Loaded Burger",                                        image: "gvlb.jpg",               cat: "garrison",                 subcat: "Burger",                 selectedVariant: "Qty",           variants: { "Qty":      { price: 345, count: 0, unit: "1" } } },
 
+                            { id: 1181,   name: "Veg Momo - Classic Steam",                                        image: "gmomo.jpg",               cat: "garrison",                 subcat: "Momos",                 selectedVariant: "Qty",           variants: { "Qty":      { price: 245, count: 0, unit: "6pc" } } },
+                            { id: 1186,   name: "Mushroom and Cheese momo",                                        image: "gmomo.jpg",               cat: "garrison",                 subcat: "Momos",                 selectedVariant: "Qty",           variants: { "Qty":      { price: 295, count: 0, unit: "6pc" } } },
+
+                            { id: 1182,   name: "Paneer Tikka Sandwich",                                        image: "gs.jpg",               cat: "garrison",                 subcat: "Sandwich",                 selectedVariant: "Qty",           variants: { "Qty":      { price: 380, count: 0, unit: "4pc" } } },
+                            { id: 1183,   name: "Grilled Vegetarian Sandwich",                                        image: "gs.jpg",               cat: "garrison",                 subcat: "Sandwich",                 selectedVariant: "Qty",           variants: { "Qty":      { price: 360, count: 0, unit: "4pc" } } },
+                            { id: 1184,   name: "Chicken Tikka Sandwich",                                        image: "gs.jpg",               cat: "garrison",                 subcat: "Sandwich",                 selectedVariant: "Qty",           variants: { "Qty":      { price: 425, count: 0, unit: "4pc" } } },
+                            { id: 1185,   name: "Chicken Salami Sandwich",                                        image: "gs.jpg",               cat: "garrison",                 subcat: "Sandwich",                 selectedVariant: "Qty",           variants: { "Qty":      { price: 440, count: 0, unit: "4pc" } } },
+
                             { id: 1171,   name: "Tiffin Stainless Steel",                                   image: "aavibt4.jpg",            cat: "aavi",                     subcat: "Tiffin",                 description: "Compartment: 3 || Stainless Steel || Leak Proof || 750 ML || Rectangle Shape",                     gallery: ["aavibt1.jpg", "aavibt2.jpg", "aavibt3.jpg", "aavibt4.jpg"],         selectedVariant: "Qty",        variants: { "Qty": { price: 300, count: 0, unit: "1" } } },
                             { id: 1172,   name: "Tiffin two Layers Blue",                                   image: "aavitiffinb41.jpg",      cat: "aavi",                     subcat: "Tiffin",                 description: "Compartment: 3 || Levels 2 || Leak Proof || Square Shape || Spoon and Fork ",                     gallery: ["aavitiffinb4.jpg", "aavitiffinb42.jpg", "aavitiffinb41.jpg"],         selectedVariant: "Qty",        variants: { "Qty": { price: 200, count: 0, unit: "1" } } },
                             { id: 1173,   name: "Tiffin one layer Peach",                                   image: "aavitiffinpink.jpg",     cat: "aavi",                     subcat: "Tiffin",                 description: "Compartment: 3 || Stainless Steel || Rectangle Shape || Spoon and Fork",                     gallery: ["aavitiffinpink1.jpg", "aavitiffinpink2.jpg", "aavitiffinpink.jpg"],         selectedVariant: "Qty",        variants: { "Qty": { price: 150, count: 0, unit: "1" } } },
@@ -571,6 +586,33 @@ startAutoPlay();
 
                             { id: 1178,   name: "Bus Pencil Box",                                           image: "aavipb.jpg",             cat: "aavi",                     subcat: "Pencil Box",                 description: "Length: 9.5 || Width: 2.5 || Compartment: 3 || Sharpner",                     gallery: ["aavipb.jpg", "aavipb1.jpg"],         selectedVariant: "Qty",        variants: { "Qty": { price: 200, count: 0, unit: "1" } } },
                             { id: 1179,   name: "Princess Pencil Box",                                      image: "aavipbp.jpg",            cat: "aavi",                     subcat: "Pencil Box",                 description: "Inbuilt sharpner || Inbuilt eraser || Compartment: 2 || Sharpner",                     gallery: ["aavipbp1.jpg", "aavipbp2.jpg", "aavipbp3.jpg", "aavipbp.jpg"],         selectedVariant: "Qty",        variants: { "Qty": { price: 250, count: 0, unit: "1" } } },
+
+
+                            { id: 2000,   name: "Jhangore Ki Kheer",                                      image: ".jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "250g" } } },
+                            { id: 2001,   name: "Aarsa",                                      image: ".jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "4pc" }, "Qty.":        { price: 500, count: 0, unit: "1kg" } } },
+                            { id: 2002,   name: "Rotana",                                      image: ".jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "4pc" }, "Qty.":        { price: 500, count: 0, unit: "1kg" } } },
+
+                            { id: 2003,   name: "Pahadi Rajma",                                      image: ".jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 200, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Aloo and Muli mix thichwani",                                      image: "touamt.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Fanu",                                      image: "toufanu.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 200, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Chainsu",                                      image: "touchain.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 200, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Pahadi Kaadi",                                      image: "toupk.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
+
+                            { id: 2004,   name: "Pahadi Rai",                                      image: ".jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Pahadi Palak",                                      image: ".jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Pahadi Patta Gobi",                                      image: ".jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
+
+
+
+                            { id: 2004,   name: "Jhangoora",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Lal Chawal",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
+
+                            { id: 2004,   name: "Mandue Roti Tawa",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 35, count: 0, unit: "1" } } },
+                            { id: 2004,   name: "Mandue Roti Tawa - Butter",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 40, count: 0, unit: "1 plt" } } },
+                            { id: 2004,   name: "Makki Roti Tawa",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 35, count: 0, unit: "1 plt" } } }, 
+                            { id: 2004,   name: "Makki Roti Tawa - Butter",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 40, count: 0, unit: "1 plt" } } }, 
+
+
 
 
 /* need to know if omi is cool with this                { id: 1018,   name: "Hot Tea",                      image: "omiht.jpg",             cat: "partneromi",               subcat: "Beverages",                selectedVariant: "Qty",           variants: { "Qty":      { price: 42, count: 0, unit: "300ml" } } },
@@ -755,10 +797,10 @@ window.addEventListener('resize', updateUI);
     // Map the index to the heading you want displayed ABOVE that card
     const sectionHeadings = {
         0: "Collaborate Stores",
-        4:  "Drinks & Snacks",
-        10:  "Grocery & Kitchen",
-        13: "Beauty and Personal Care",
-        19: "House Hold Essentials"
+        4:  "Drinks & Snacks", /*3 */
+        10:  "Grocery & Kitchen",/*9 */
+        13: "Beauty and Personal Care",/*10 */
+        19: "House Hold Essentials"/*18 */
     };
 
     collectionGrid.innerHTML = collections.map((c, i) => {
@@ -874,7 +916,7 @@ if (statsSection) {
     if (catName === "Omi's Sweets" || catName === "Omi's Food" || catName === "The Garrison") {
         // Appends GST notice for food categories
         sliderTitle.innerText = catName + " (Store GST 5% will be added)";
-    } else if (catName === "Aavi Everyday Store") {
+    } else if (catName === "Aavi Everyday Store" || catName === "Taste of Uttarakhand") {
         // Appends info prompt for Aavi Everyday Store
         sliderTitle.innerText = catName + " (tap image for more info)";
     } else {
@@ -1194,7 +1236,7 @@ productGrid.addEventListener('click', (e) => {
     if (card && (target.classList.contains('iimg') || target.tagName === 'H4')) {
         const p = products.find(prod => prod.id == card.dataset.prodId);
         
-        if (p && p.cat === 'aavi') {
+        if (p && (p.cat === 'aavi' || p.cat === 'tou')) {
             activeGallery = p.gallery || [p.image]; 
             currentSlideIndex = 0;
             
@@ -1550,13 +1592,13 @@ products.forEach(p => {
     // Safety check: Exit if the slider HTML isn't on this specific page
     if (!container || !inner) return;
 /*☆*/
-    const referenceDate = new Date("2026-02-19");
+    const referenceDate = new Date("2026-02-19"); /*★★★★☆*/
     const reviews = [
-        { name: "-Mahi Chauhan-", img: "r2.jpg", stars: "★★★★★(5/5)", text: "Our location was far from the main town, and some wellness products were needed urgently...", from: "Hatipaon, Mussoorie", date: "2026-08-20" },
-        { name: "-Rohit Bisht-", img: "r5.jpeg", stars: "★★★★★(5/5)", text: "Fast Delivery", from: "Manjakot", date: "2026-02-26" },
-        { name: "-Arun K-", img: "r1.jpg", stars: "★★★★☆(4/5)", text: "Great Service! Mere parents ko urgent Meds. deni thi, they delivered to their door step.", from: "Mallingar, Landour", date: "2026-02-20" },
-        { name: "-Mukul Thapli-", img: "r3.jpg", stars: "★★★★★(5/5)", text: "Late night delivery!.", from: "Nag Mandir, Mussoorie", date: "2026-02-23" },
-        { name: "-Omkar-", img: "r4.jpg", stars: "★★★★☆(4/5)", text: "Kisi dost ne recomend kiya tha, wakey kafi achhi service h...", from: "Barlowganj, Mussoorie", date: "2026-02-25" }
+        { name: "-Sahlani K-", img: "r2.jpg", stars: "★★★★☆(4/5)", text: "Our location was 11km away from Main Market, the order came on time ", from: "JW Marriott, Mussoorie", date: "2026-04-01" },
+        { name: "-Ronit Roy-", img: "r5.jpg", stars: "★★★★★(5/5)", text: "The delivery person made sure we were informed through out the order and delivery process", from: "Saint George's School, Barloganj, Mussoorie", date: "2026-03-26" },
+        { name: "-Mannu Paswan-", img: "r1.jpg", stars: "★★★★★(5/5)", text: "Excellent timing, and afordable prices.", from: "LBSNAA, Charleville, Mussoorie", date: "2026-03-20" },
+        { name: "-Priyanka Thapa-", img: "r3.jpg", stars: "★★★★★(5/5)", text: "ek item ka price zayada tha inke portal p pr delivery karte time inhone MRP p hi paise liye, hard to find such honesty as tourists can be over charges for anything", from: "Char Dukan, Landour, Mussoorie", date: "2026-03-23" },
+        { name: "-Bennet Johns-", img: "r4.jpg", stars: "★★★★☆(4/5)", text: "The delivery was 5 mins late but the delivery boy was always reachable and made sure we received all the items of demand", from: "Woodstock School, Tehri Road, Landour", date: "2026-03-25" }
         
     ];
     const reviewContainer = document.querySelector('.rbox');
