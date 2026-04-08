@@ -177,6 +177,9 @@ header { width: 100%; height: 3.5rem; border-bottom: 1px solid #ccc; display: fl
     background-color: rgb(112, 238, 112) !important;
     transition: background-color 0.1s ease;
 }
+.download{
+    text-decoration: underline;
+}
 
 .subcat-nav-item img {
     width: 60px;
