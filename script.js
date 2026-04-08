@@ -622,29 +622,29 @@ startAutoPlay();
                             { id: 1179,   name: "Princess Pencil Box",                                      image: "aavipbp.jpg",            cat: "aavi",                     subcat: "Pencil Box",                 description: "Inbuilt sharpner || Inbuilt eraser || Compartment: 2 || Sharpner",                     gallery: ["aavipbp1.jpg", "aavipbp2.jpg", "aavipbp3.jpg", "aavipbp.jpg"],         selectedVariant: "Qty",        variants: { "Qty": { price: 250, count: 0, unit: "1" } } },
 
 
-                            { id: 1280,   name: "Jhangore Ki Kheer",                                      image: ".jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "250g" } } },
-                            { id: 1281,   name: "Aarsa",                                      image: ".jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "4pc" }, "Qty.":        { price: 500, count: 0, unit: "1kg" } } },
-                            { id: 1282,   name: "Rotana",                                      image: ".jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "4pc" }, "Qty.":        { price: 500, count: 0, unit: "1kg" } } },
+                            { id: 1280,   name: "Jhangore Ki Kheer",                                      image: "toujkk.jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "250g" } } },
+                            { id: 1281,   name: "Aarsa",                                      image: "touarsa.jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "4pc" }, "Qty.":        { price: 500, count: 0, unit: "1kg" } } },
+                            { id: 1282,   name: "Rotana",                                      image: "tourotana.jpg",            cat: "tou",                     subcat: "Sweet",                 description: " ||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 100, count: 0, unit: "4pc" }, "Qty.":        { price: 500, count: 0, unit: "1kg" } } },
 
-                            { id: 1283,   name: "Pahadi Rajma",                                      image: ".jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 200, count: 0, unit: "1 plt" } } },
+                            { id: 1283,   name: "Pahadi Rajma",                                      image: "toupr.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 200, count: 0, unit: "1 plt" } } },
                             { id: 1284,   name: "Aloo and Muli mix thichwani",                                      image: "touamt.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
                             { id: 1285,   name: "Fanu",                                      image: "toufanu.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 200, count: 0, unit: "1 plt" } } },
                             { id: 1286,   name: "Chainsu",                                      image: "touchain.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 200, count: 0, unit: "1 plt" } } },
                             { id: 1287,   name: "Pahadi Kaadi",                                      image: "toupk.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
 
-                            { id: 1288,   name: "Pahadi Rai",                                      image: ".jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
+                            { id: 1288,   name: "Rai Saag Bhuji",                                      image: "toursb.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
                             { id: 1289,   name: "Kafuli",                                      image: "toukafuli.jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: ["toukafuli.jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
-                            { id: 1290,   name: "Pahadi Patta Gobi",                                      image: ".jpg",            cat: "tou",                     subcat: "Gravy",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
+                            { id: 1290,   name: "Pahadi Patta Gobi",                                      image: "touppg.jpg",            cat: "tou",                     subcat: "Sabzi",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 80, count: 0, unit: "1 plt" } } },
 
 
 
-                            { id: 1291,   name: "Jhangoora",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
-                            { id: 1292,   name: "Lal Chawal",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
+                            { id: 1291,   name: "Jhangoora Ka Bhaat",                                      image: "toujab.jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
+                            { id: 1292,   name: "Lal Chawal",                                      image: "tourr.jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 150, count: 0, unit: "1 plt" } } },
 
-                            { id: 1293,   name: "Mandue Roti Tawa",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 35, count: 0, unit: "1" } } },
-                            { id: 1294,   name: "Mandue Roti Tawa - Butter",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 40, count: 0, unit: "1 plt" } } },
-                            { id: 1295,   name: "Makki Roti Tawa",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 35, count: 0, unit: "1 plt" } } }, 
-                            { id: 1296,   name: "Makki Roti Tawa - Butter",                                      image: ".jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 40, count: 0, unit: "1 plt" } } },
+                            { id: 1293,   name: "Mandue Roti Tawa",                                      image: "toumkr.jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 35, count: 0, unit: "1" } } },
+                            { id: 1294,   name: "Mandue Roti Tawa - Butter",                                      image: "toumkrb.jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 40, count: 0, unit: "1 plt" } } },
+                            { id: 1295,   name: "Makki Roti Tawa",                                      image: "toumkkr.jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 35, count: 0, unit: "1 plt" } } }, 
+                            { id: 1296,   name: "Makki Roti Tawa - Butter",                                      image: "toumkkrb.jpg",            cat: "tou",                     subcat: "Rice",                 description: " 2 serving||  ||  || ",                     gallery: [".jpg", ".jpg", ".jpg", ".jpg"],         selectedVariant: "Qty",        variants: { "Qty":      { price: 40, count: 0, unit: "1 plt" } } },
 
 
 
@@ -825,25 +825,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-function showUpdateBanner() {
-  const banner = document.getElementById('update-banner');
-  banner.style.display = 'block';
-}
-
-// When the user clicks "UPDATE NOW"
-document.getElementById('update-button').addEventListener('click', () => {
-  if (newWorker) {
-    newWorker.postMessage('skipWaiting');
-  }
-});
-
-// Reload the page once the new service worker takes control
-let refreshing;
-navigator.serviceWorker.addEventListener('controllerchange', () => {
-  if (refreshing) return;
-  window.location.reload();
-  refreshing = true;
-});
 
 
 // Ensure it runs only after images/styles are fully ready
