@@ -147,6 +147,9 @@ woodstockCheckbox.addEventListener('change', () => {
     const display = document.getElementById('location-display');
     
     if (woodstockCheckbox.checked) {
+        // Uncheck the other checkbox
+        itmCheckbox.checked = false;
+
         // Disable and style the button
         locationBtn.disabled = true;
         locationBtn.classList.add('disabled-grey'); 
@@ -171,6 +174,9 @@ itmCheckbox.addEventListener('change', () => {
     const display = document.getElementById('location-display');
     
     if (itmCheckbox.checked) {
+        // Uncheck the other checkbox
+        woodstockCheckbox.checked = false;
+
         // Disable and style the button
         locationBtn.disabled = true;
         locationBtn.classList.add('disabled-grey'); 
@@ -190,7 +196,6 @@ itmCheckbox.addEventListener('change', () => {
     }
     updateSidebar();
 });
-
 // If the user swipes/drags, stop auto-scroll
 slider.addEventListener('touchstart', stopAutoPlay);
 slider.addEventListener('mousedown', stopAutoPlay);

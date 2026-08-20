@@ -957,6 +957,17 @@ body.dark-mode .stat-group:nth-child(2) {
     margin: 10px 0px;         /* Adds space below the label */
 }
 
+.itm-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Keeps everything to the left */
+    gap: 0px;                   /* Space between text and box */
+    cursor: pointer;             /* Makes the whole label clickable */
+    font-family: sans-serif;      
+    margin: 10px 0px;         /* Adds space below the label */
+}
+
+
 .theme-popup.show {
     opacity: 1;
     transform: translateY(0);
