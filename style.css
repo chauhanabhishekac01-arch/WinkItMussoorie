@@ -961,58 +961,6 @@ body.dark-mode .stat-group:nth-child(2) {
     opacity: 1;
     transform: translateY(0);
 }
-
-.top-nav-header {
-    display: flex;
-    justify-content: flex-end; /* Pushes the icon to the right side */
-    align-items: center;
-    padding: 5px 20px;        /* Adds space around the icon */
-    background: linear-gradient(to top, rgb(255, 255, 255), rgb(206, 72, 206));    /* Or match your page background */
-    text-decoration: none;
-    width: 100%;
-    font-size: 14px;
-    color: #000;
-    /* Optional: background: linear-gradient(to bottom, rgba(255,255,255,0.9), transparent); */
-}
-
-.top-profile-icon {
-    display: flex;
-    justify-content: flex-end; /* Pushes the icon to the right side */
-    padding: 10px 20px;        /* Adds space around the icon */
-    background:  transparent;    /* Or match your page background */
-    text-decoration: none;
-    width: 100%;
-    font-size: 24px;
-    color: #000;
-}
-
-.profile-circle {
-    background: #fff;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Dark mode support */
-[data-theme="dark"] .profile-circle {
-    background: #333;
-    color: #fff;
-}
-.user-greeting h2 {
-    margin: 0;
-    white-space: nowrap;      /* Prevents text from wrapping to a second line */
-    overflow: hidden;         /* Ensures nothing spills out */
-    text-overflow: ellipsis;  /* Adds '...' if the name is way too long for the screen */
-    display: inline-block;    /* Allows it to sit next to other elements if needed */
-}
-
-
-
-
 .lightbox {
     position: fixed;
     z-index: 1000;
