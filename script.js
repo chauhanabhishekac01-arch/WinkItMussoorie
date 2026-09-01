@@ -196,6 +196,7 @@ itmCheckbox.addEventListener('change', () => {
     }
     updateSidebar();
 });
+
 // If the user swipes/drags, stop auto-scroll
 slider.addEventListener('touchstart', stopAutoPlay);
 slider.addEventListener('mousedown', stopAutoPlay);
@@ -219,16 +220,17 @@ startAutoPlay();
         { q: "12. Where is The Fine Dine Deluxe restraunt?", a: "The Fine Dine is not a restraunt, the Fine Dine Deluxe is an experience where we deliver the meals from the restraunt which has good review for the added item.." }
     ];
     const collections = [
-        { id: "rakshab", name: "Raksha Bandhan Special",                     previews: ["rak.jpg"] },
-        { id: "aavi", name: "👑 Gift Store",                  previews: ["aavi.jpg"] },
+        { id: "gng", name: "Games and Gym",                         previews: ["gng.jpg"] },
+        { id: "dp", name: "Discounted Items",                        previews: ["dp.jpg"] },
         { id: "bakery", name: "Cake Shop",                          previews: ["bakery.jpg"] },
         { id: "fined", name: "Fine Dine Deluxe",                     previews: ["fd.jpg"] },
-        { id: "wc", name: "🍽️ Wink Cafe",                          previews: ["wc.jpg"] },
+        
         { id: "pahadoka", name: "Pahado Ka",                     previews: ["pklogo.jpg"] },
         /*{ id: "tou", name: "Taste of Uttarakhand",                     previews: ["gad.jpg"] },*/
         { id: "partneromi", name: "Omi's Sweets",                   previews: ["omi.jpg"] },
         { id: "partneromif", name: "Omi's Food",                    previews: ["omifo.jpg"] },
         { id: "tos", name: "Taste of South",                     previews: ["tos.jpg"] },
+        { id: "aavi", name: "👑 Gift Store",                  previews: ["aavi.jpg"] },
         /*{ id: "garrison", name: "The Garrison",                     previews: ["glogo.jpg"] },*/
         { id: "beverages", name: "Drinks and Juices",               previews: ["dj.jpg"] },
         { id: "snacks", name: "Chips and Namkeens",                 previews: ["cn.jpg"] },
@@ -247,6 +249,8 @@ startAutoPlay();
         { id: "face", name: "Face",                                 previews: ["f.jpg"] },
         { id: "g", name: "General",                                 previews: ["g.jpg"] },
         { id: "cleaningessentials", name: "Cleaners and Freshners", previews: ["cf.jpg"] },
+        { id: "other", name: "Others", previews: ["cell.jpg"] },
+        
         
         
         
@@ -381,7 +385,7 @@ startAutoPlay();
                         { id: 4018, name: "Haldirams Bhujia",                                               image: "sbhujia.jpg",           cat: "snacks",                   subcat: "Haldiram's",                 selectedVariant: "S",           variants: { "S":        { price: 20, count: 0, unit: "75g" }, "L": { price: 60, count: 0, unit: "200g" } } },
                         { id: 4019, name: "Haldirams Salted Peanuts",                                       image: "ssalted.jpg",           cat: "snacks",                   subcat: "Haldiram's",                 selectedVariant: "S",           variants: { "S":        { price: 20, count: 0, unit: "75g" }, "L": { price: 55, count: 0, unit: "200g" } } },
                         { id: 4021, name: "Haldirams Moong Dal",                                            image: "shaldirammd.jpg",       cat: "snacks",                   subcat: "Haldiram's",                 selectedVariant: "S",           variants: { "S":        { price: 20, count: 0, unit: "75g" }, "L": { price: 60, count: 0, unit: "200g" } } },
-                        { id: 4022, name: "Haldirams Lite Mixture",                                         image: "shaldiramlm.jpg",       cat: "snacks",                   subcat: "Haldiram's",                 selectedVariant: "S",           variants: { "S":        { price: 20, count: 0, unit: "75g" }, "L": { price: 40, count: 0, unit: "150g" } } },
+                        
 
                         { id: 4024, name: "Crax Curls Chatpata Masala",                                     image: "scc.jpg",               cat: "snacks",                   subcat: "Crax",                       selectedVariant: "L",           variants: {  "L":       { price: 60, count: 0, unit: "88g" } } },
                         { id: 4025, name: "Crax Crunchy Pipes Salted ",                                     image: "sccp.jpg",              cat: "snacks",                   subcat: "Crax",                       selectedVariant: "L",           variants: { "L":        { price: 60, count: 0, unit: "73g" } } },
@@ -406,6 +410,7 @@ startAutoPlay();
                         { id: 5017, name: "Garnier Men Acno Fight Anti-Pimple Face Wash ",                  image: "chgarniersh.jpg",       cat: "face",                     subcat: "Facewash",                   selectedVariant: "Qty",         variants: { "Qty":      { price: 125, count: 0, unit: "50g" } } },
                         { id: 5020, name: "Face Ice Roller, silicone container, reuseable ",                  image: "faceir.jpg",       cat: "face",                     subcat: "Roller",                   selectedVariant: "Qty",         variants: { "Qty":      { price: 120, count: 0, unit: "120ml" } } },
                         { id: 5021, name: "Garnier Vitamin C serum mask",                                     image: "gfm.jpg",       cat: "face",                     subcat: "Masks",                   selectedVariant: "Qty",         variants: { "Qty":      { price: 115, count: 0, unit: "28g" } } },
+                        { id: 7103, name: "Pilgrim Korean Rice Hydra Glow Moisturizer",                  image: "facep.jpg",              cat: "face",                        subcat: "Premium",                   selectedVariant: "Qty",          variants: { "Qty":      { price: 275, count: 0, unit: "50gm" } } },
 
 
 /*Grooming*/            { id: 5010, name: "Scissors 2 X 4.25inch",                                          image: "pcscissors.jpg",        cat: "g",                        subcat: "Grooming",                   selectedVariant: "Size",        variants: { "Size":     { price: 50, count: 0, unit: "2x4inch" } } },
@@ -414,13 +419,14 @@ startAutoPlay();
                         { id: 5013,  name: "Nail Clipper",                                                  image: "pcnc.jpg",              cat: "g",                        subcat: "Grooming",                   selectedVariant: "Qty",       variants: { "Qty":    { price: 80, count: 0, unit: "1pc" } } },
 
 
-/*Dental*/              { id: 5014, name: "Colgate",                                                        image: "pccolgate.jpg",         cat: "g",                        subcat: "Dental",                     selectedVariant: "Tube",        variants: { "Tube":     { price: 135, count: 0, unit: "180ml" } } },
-                        { id: 5015, name: "Oral-B Pro Clean",                                               image: "pcoralb.jpg",           cat: "g",                        subcat: "Dental",                     selectedVariant: "Qty",       variants: { "Qty":    { price: 50, count: 0, unit: "1pc" } } },
+/*Dental*/              { id: 5014, name: "Colgate",                                                        image: "pccolgate.jpg",         cat: "g",                        subcat: "Dental",                     selectedVariant: "Tube",        variants: { "Tube":     { price: 135, count: 0, unit: "180g" } } },
+/*Dental*/              { id: 5026, name: "Colgate Total",                                                        image: "colgatet.jpg",         cat: "g",                        subcat: "Dental",                     selectedVariant: "Tube",        variants: { "Tube":     { price: 50, count: 0, unit: "25g" } } },
+                        { id: 5015, name: "Oral-B Pro Clean",                                               image: "pcoralb.jpg",           cat: "g",                        subcat: "Dental",                     selectedVariant: "Qty",       variants: { "Qty":    { price: 55, count: 0, unit: "1pc" } } },
 
 
 /*cloths*/                { id: 6001, name: "Ariel Power Gel Front Load Liquid Detergent",                  image: "clarielb.jpg",          cat: "cleaningessentials",       subcat: "Detergent",                  selectedVariant: "Qty",         variants: { "Qty":      { price: 215, count: 0, unit: "950ml" } } },
                           { id: 6002, name: "Comfort After Wash Fabric Conditioner -Lily Fresh",            image: "clcomforlf.jpg",        cat: "cleaningessentials",       subcat: "Detergent",                  selectedVariant: "Qty",         variants: { "Qty":      { price: 235, count: 0, unit: "860ml" } } },
-                          { id: 6003, name: "Comfort After Wash Fabric Conditioner -Morning Fresh",         image: "clcomfortmf.jpg",       cat: "cleaningessentials",       subcat: "Detergent",                  selectedVariant: "Qty",         variants: { "Qty":      { price: 235, count: 0, unit: "860ml" } } },
+                          /*{ id: 6003, name: "Comfort After Wash Fabric Conditioner -Morning Fresh",         image: "clcomfortmf.jpg",       cat: "cleaningessentials",       subcat: "Detergent",                  selectedVariant: "Qty",         variants: { "Qty":      { price: 235, count: 0, unit: "860ml" } } },*/
 
 /*Toilet & Bathroom*/     { id: 6004, name: "Harpic Advanced Disinfectant Toilet Cleaner",                 image: "clharpic.jpg",          cat: "cleaningessentials",       subcat: "Toilet & Bathroom",         selectedVariant: "Qty",          variants: { "Qty":      { price: 110, count: 0, unit: "500ml" } } },
                           { id: 6010, name: "Harpic Disinfectant Bathroom Cleaner (Floral)",                image: "clharpicr.jpg",         cat: "cleaningessentials",       subcat: "Toilet & Bathroom",         selectedVariant: "Qty",          variants: { "Qty":      { price: 115, count: 0, unit: "1kg" } } },
@@ -429,7 +435,7 @@ startAutoPlay();
 /*Room Freshners*/        { id: 6006, name: "Odonil Lavender Mist Room Freshener (Lavender)",               image: "clodonill.jpg",         cat: "cleaningessentials",       subcat: "Room Freshners",            selectedVariant: "Qty",          variants: { "Qty":      { price: 170, count: 0, unit: "220ml" } } },
         
 /*Surface Cleaners*/      { id: 6007, name: "Colin Glass Cleaner ",                                         image: "clcolin.jpg",           cat: "cleaningessentials",       subcat: "Surface Cleaners",          selectedVariant: "Qty",          variants: { "Qty":      { price: 120, count: 0, unit: "500ml" } } },
-                          { id: 6008, name: "Lizol Disinfectant Surface and Floor Cleaner ",                image: "cllizol.jpg",           cat: "cleaningessentials",       subcat: "Surface Cleaners",          selectedVariant: "Qty",          variants: { "Qty":      { price: 260, count: 0, unit: "1L" } } },
+                          /*{ id: 6008, name: "Lizol Disinfectant Surface and Floor Cleaner ",                image: "cllizol.jpg",           cat: "cleaningessentials",       subcat: "Surface Cleaners",          selectedVariant: "Qty",          variants: { "Qty":      { price: 260, count: 0, unit: "1L" } } },*/
                           { id: 6009, name: "Feather's Premium Paper Napkin(ply 2) ",                       image: "clfeathern.jpg",        cat: "cleaningessentials",       subcat: "Surface Cleaners",          selectedVariant: "Qty",          variants: { "Qty":      { price: 90, count: 0, unit: "105gm" } } },
                           { id: 6010, name: "Floor Mat - Grey",                                             image: "clfmgr.jpg",            cat: "cleaningessentials",       subcat: "Floor Mat",                 selectedVariant: "Qty",          variants: { "Qty":      { price: 199, count: 0, unit: "1pc" } } },
                           { id: 6011, name: "Floor Mat - Green",                                            image: "clfmg.jpg",             cat: "cleaningessentials",       subcat: "Floor Mat",                 selectedVariant: "Qty",          variants: { "Qty":      { price: 299, count: 0, unit: "1pc" } } },
@@ -485,21 +491,21 @@ startAutoPlay();
                          { id: 8015, name: "Kulat",                                                         image: "rkulat.jpg",            cat: "adc",                      subcat: "Dal",                       selectedVariant: "Qty",          variants: { "Qty":     { price: 130, count: 0, unit: "1kg" } } },
 
 /*Atta*/                 { id: 8016, name: "Chandan Bhog",                                                  image: "rchandan.png",          cat: "adc",                      subcat: "Atta",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 250, count: 0, unit: "5kg" } } },
-                         { id: 8017, name: "Fortune Atta",                                                  image: "rfortune.jpg",          cat: "adc",                      subcat: "Atta",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 240, count: 0, unit: "5kg" } } },
+                         { id: 8017, name: "Fortune Atta",                                                  image: "rfortune.jpg",          cat: "adc",                      subcat: "Atta",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 253, count: 0, unit: "5kg" } } },
                          { id: 8018, name: "Ashirwad Atta",                                                 image: "rashirwad.jpg",         cat: "adc",                      subcat: "Atta",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 255, count: 0, unit: "5kg" } } },
 
 /*Rice*/                 { id: 8019, name: "Khanda Rice",                                                   image: "rrice.jpg",             cat: "adc",                      subcat: "Rice",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 50, count: 0, unit: "1kg" } } },
                          { id: 8020, name: "Parmal Rice",                                                   image: "rrice.jpg",             cat: "adc",                      subcat: "Rice",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 60, count: 0, unit: "1kg"        } } },
-                         { id: 8042, name: "Sharbati Rice",                                                   image: "rrice.jpg",             cat: "adc",                      subcat: "Rice",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 80, count: 0, unit: "1kg"        } } },
+                         { id: 8042, name: "Sharbati Rice",                                                   image: "rrice.jpg",             cat: "adc",                      subcat: "Rice",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 90, count: 0, unit: "1kg"        } } },
                          { id: 8043, name: "Basmati Makhan Chor Rice",                                                   image: "rrice.jpg",             cat: "adc",                      subcat: "Rice",                      selectedVariant: "Qty",          variants: { "Qty":     { price: 149, count: 0, unit: "1kg"        } } },
        
 /*Oil*/                 { id: 8021, name: "Fortune Kachi Ghani Oil",                                        image: "rfkg.jpg",              cat: "mo",                       subcat: "Oil",                       selectedVariant: "L",            variants: { "L":       { price: 220, count: 0, unit: "910g" } } },       
-                        { id: 8022, name: "Fortune Soya Bean Oil",                                         image: "rsbo.jpg",              cat: "mo",                       subcat: "Oil",                       selectedVariant: "L",            variants: { "L":       { price: 145, count: 0, unit: "750g" } } },                     
+                        { id: 8022, name: "Fortune Soya Bean Oil",                                         image: "rsbo.jpg",              cat: "mo",                       subcat: "Oil",                       selectedVariant: "L",            variants: { "L":       { price: 170, count: 0, unit: "750g" } } },                     
                         { id: 8023, name: "Fortune Rice Bran Oil",                                         image: "rrbo.jpg",              cat: "mo",                       subcat: "Oil",                       selectedVariant: "L",            variants: { "L":       { price: 200, count: 0, unit: "870g" } } },
                         { id: 8024, name: "Fortune Sunflower Oil",                                         image: "rfsl.jpg",              cat: "mo",                       subcat: "Oil",                       selectedVariant: "L",            variants: { "L":       { price: 185, count: 0, unit: "800g" } } },
                         { id: 8910, name: "TilMoti Sesame Oil",                                         image: "rsoil.jpg",              cat: "mo",                       subcat: "Oil",                       selectedVariant: "L",            variants: { "L":       { price: 250, count: 0, unit: "1L" } } },
                         { id: 8124, name: "Nilons Ginger Garlic Paste",                                    image: "rngg.jpg",              cat: "mo",                       subcat: "Ginger Garlic",             selectedVariant: "L",            variants: { "L":       { price: 60, count: 0, unit: "200g" } } },
-                        { id: 8125, name: "Snapin Oregano",                                    image: "rnsoregano.jpg",              cat: "mo",                       subcat: "Spices",             selectedVariant: "L",            variants: { "L":       { price: 109, count: 0, unit: "20g" } } },
+                        { id: 8125, name: "MDH Chunky Chat Masala",                                    image: "mdhchunky.jpg",              cat: "mo",                       subcat: "Spices",             selectedVariant: "L",            variants: { "L":       { price: 94, count: 0, unit: "100g" } } },
                         { id: 8126, name: "Snapin Chilli Flakes",                                    image: "rnschillif.jpg",              cat: "mo",                       subcat: "Spices",             selectedVariant: "L",            variants: { "L":       { price: 95, count: 0, unit: "38g" } } },
 
 /*General*/              { id: 8025, name: "Poha",                                                          image: "rpoha.jpg",             cat: "adc",                      subcat: "General",                   selectedVariant: "Qty",          variants: { "Qty":     { price: 60, count: 0, unit: "500g" } } },
@@ -882,11 +888,26 @@ startAutoPlay();
                             { id: 1905,   name: "Banana Milk Shake",                                       image: "wcbs.jpg",            cat: "wc",                     subcat: "Shakes",     selectedVariant: "Qty",           variants: { "Qty":      { price: 59, count: 0, unit: "1gl" } } },                                                                                                                                                                                                                                                 
                             { id: 1906,   name: "Oreo Milk Shake",                                       image: "wcos.jpg",            cat: "wc",                     subcat: "Shakes",     selectedVariant: "Qty",           variants: { "Qty":      { price: 79, count: 0, unit: "1gl" } } },                                                                                                                                                                                                                                                 
 
-                            
-                            { id: 20001,   name: "Gift Hamper",                                           image: "rakham.jpg",            cat: "rakshab",                    subcat: "All",    description: "Lotte Choco Pie Rs 10, Milky Bar Rs 20, Paper Boat Rs 10, Gems Rs 10, Crispello Rs 20, Smooth Rs 10, Kitkat Rs 20, Oreo Rs 10 and, Chupa Chup Rs 10 or \n*Customize Hamper in whatsapp chat*",    gallery: ["rakham.jpg"],   selectedVariant: "Qty",           variants: { "Qty":     { price: 100, count: 0, unit: "250g" }, "Qty.": { price: 200, count: 0, unit: "500g" } } },
+                            /*{ id: 20001,   name: "Black Umbrella 40 Inch",                                       image: "rsu.jpg",            cat: "rs",                     subcat: "Umbrel la",     selectedVariant: "Qty",           variants: { "Qty":      { price: 220, count: 0, unit: "1pc" } } },                                                                                                                                                                                                                                                 
+                            { id: 20002,   name: "Disposable Rain Coat",                                       image: "rsr.jpg",            cat: "rs",                     subcat: "Rain Coat",     selectedVariant: "Qty",           variants: { "Qty":      { price: 149, count: 0, unit: "1pc" } } },                                                                                                                                                                                                                                                 
+                            { id: 20003, name: "Vicks Inhaler Keychain",                                       image: "chvi.jpg",              cat: "rs",                        subcat: "General",                   selectedVariant: "Qty",          variants: { "Qty":      { price: 60, count: 0, unit: "0.5ml" } } },
+                            { id: 20004, name: "Cofsils Orange Flavour, 10 Lozenges",                          image: "chcough.jpg",           cat: "rs",                        subcat: "General",                   selectedVariant: "Qty",          variants: { "Qty":      { price: 35, count: 0, unit: "1pk" } } },
+                            { id: 20005, name: "Control D N95 Mask",                                           image: "chn95.jpg",             cat: "rs",                        subcat: "General",                   selectedVariant: "Qty",          variants: { "Qty":      { price: 60, count: 0, unit: "1pc" } } },
+                            { id: 20006, name: "Dettol Antiseptic Liquid",                                    image: "cdettol.jpg",             cat: "rs",                        subcat: "General",                   selectedVariant: "Qty",          variants: { "Qty":      { price: 83, count: 0, unit: "125ml" } } },*/
+
+                            { id: 20001,   name: "Gift Hamper",                                           image: "rakham.jpg",            cat: "rakshab",                    subcat: "All",    description: "Lotte Choco Pie Rs 10, Milky Bar Rs 20, Paper Boat Rs 10, Gems Rs 10, Crispello Rs 20, Smooth Rs 10, Kitkat Rs 20, Oreo Rs 10 and, Chupa Chup Rs 10 or \n*Customize Hamper in whatsapp chat*",    gallery: ["rakham.jpg"],   selectedVariant: "Qty",           variants: { "Qty":     { price: 199, count: 0, unit: "1pkt" }, "Qty.": { price: 0, count: 0, unit: "Custom" } } },
                             { id: 20002,   name: "Rakhee",                                                image: "rakr.jpg",            cat: "rakshab",                     subcat: "All",    description: "A simple rakhee or \n*Customize Rakhee in whatsapp chat* ",    gallery: ["rakr.jpg"],      selectedVariant: "Qty",           variants: { "Qty":      { price: 25, count: 0, unit: "1"}, "Qty.": { price: 0, count: 0, unit: "Custom" } } },
                             { id: 20003,   name: "Photo Frame",                                           image: "rakpf.jpg",            cat: "rakshab",                     subcat: "All",   description: "A photo frame of 3X4 Inch demension or \n*Customize Frame in whatsapp chat* ",    gallery: ["rakpf.jpg"],       selectedVariant: "Qty",           variants: { "Qty":      { price: 299, count: 0, unit: "3X4inc"}, "Qty.": { price: 0, count: 0, unit: "Custom" } } },
                             { id: 1067,   name: "Omi's Mix Sweets",                                       image: "omimsweet.jpg",            cat: "rakshab",                    subcat: "All",   description: "Mix Sweets the best festive choice or \n*Customize Sweet in whatsapp chat* ",    gallery: ["omimsweet.jpg"],      selectedVariant: "Qty",           variants: { "Qty":      { price: 250, count: 0, unit: "500g"}, "Qty.": { price: 0, count: 0, unit: "Custom" } } },
+
+                            { id: 30001,   name: "Tambola 48 Reusable punch cards",                                       image: "gngt.jpg",            cat: "gng",                     subcat: "Games",     selectedVariant: "Qty",           variants: { "Qty":      { price: 440, count: 0, unit: "1" } } },                                                                                                                                                                                                                                                 
+                            { id: 30002,   name: "Hand Gripper Unisex Adjustable",                                       image: "gym.jpg",            cat: "gng",                     subcat: "Games",     selectedVariant: "Qty",           variants: { "Qty":      { price: 499, count: 0, unit: "1" } } },                                                                                                                                                                                                                                                 
+                            { id: 30000,   name: "Uno Cards",                                       image: "uno.jpg",            cat: "gng",                     subcat: "Card Games",     selectedVariant: "Qty",           variants: { "Qty":      { price: 149, count: 0, unit: "1" } } },                                                                                                                                                                                                                                                 
+
+                            { id: 6003, name: "Comfort After Wash Fabric Conditioner -Morning Fresh<br>MRP:Rs 245",         image: "clcomfortmf.jpg",       cat: "dp",       subcat: "Detergent",                  selectedVariant: "Qty",         variants: { "Qty":      { price: 229, count: 0, unit: "860ml" } } },
+                            { id: 6008, name: "Lizol Disinfectant Surface and Floor Cleaner<br>MRP:Rs 260",                image: "cllizol.jpg",           cat: "dp",       subcat: "Surface Cleaners",          selectedVariant: "Qty",          variants: { "Qty":      { price: 239, count: 0, unit: "1L" } } },
+
+                            { id: 40008, name: "Duracell AA Cell",                image: "cell.jpg",           cat: "other",       subcat: "All",          selectedVariant: "Qty",          variants: { "Qty":      { price: 25, count: 0, unit: "1" } } },
 
 
 /* need to know if omi is cool with this                { id: 1018,   name: "Hot Tea",                      image: "omiht.jpg",             cat: "partneromi",               subcat: "Beverages",                selectedVariant: "Qty",           variants: { "Qty":      { price: 42, count: 0, unit: "300ml" } } },
@@ -1088,7 +1109,7 @@ window.addEventListener('resize', updateUI);
     function renderCollections() {
     // Map the index to the heading you want displayed ABOVE that card
     const sectionHeadings = {
-        0: "Festive Season",
+        0: "Latest Additions",
         2: "Collaborate Stores",
         9:  "Drinks & Snacks", /*3 */
         15:  "Grocery & Kitchen",/*9 */
@@ -1230,9 +1251,9 @@ if (sliderTitle) {
         } else if (catName === "Aavi Everyday Store" || catName === "Taste of Uttarakhand") {
             // Appends info prompt for Aavi Everyday Store
             sliderTitle.innerText = catName + " (tap image for more info)";
-        } else if (catName === "Raksha Bandhan Special") {
-            // Appends info prompt for Raksha Bandhan Special
-            sliderTitle.innerText = catName + " (Note: Delivery on 27th Aug only)";
+        } else if (catName === "Discounted Items") {
+            // Appends info prompt for Discounted Items
+            sliderTitle.innerText = catName + " (Note: Only canceled order products are sold in Discount)";
         }
          else {
             // Default behavior for all other categories
@@ -1426,7 +1447,7 @@ if (sliderTitle) {
         else if (itmCheckbox.checked) {
             kmCharges = 50;
         }
-         else if (firstLocationWord === "kharkuli" || firstLocationWord === "bhatta" || firstLocationWord === "Semwala") {
+        else if (firstLocationWord === "kharkuli" || firstLocationWord === "bhatta" || firstLocationWord === "Semwala") {
             kmCharges = 80;
         } else {
             if (currentDistance <= 1) kmCharges = 30;

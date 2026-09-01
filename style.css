@@ -251,7 +251,41 @@ header { width: 100%; height: 3.5rem; border-bottom: 1px solid #ccc; display: fl
 .side-qty-btn { background: #ffeb3b; border: 1px solid #333; border-radius: 4px; padding: 2px 8px; cursor: pointer; font-weight: bold; }
 
 .address-section { margin-top: 15px; background: #f4f4f4; padding: 12px; border-radius: 8px; }
-.address-section input, .address-section textarea { width: 100%; margin-top: 8px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;}
+/* Apply full width and padding ONLY to text inputs, search inputs, etc., but NOT checkboxes */
+.address-section input:not([type="checkbox"]) {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Style your checkbox labels to stay clean and aligned */
+.woodstock-checkbox,
+.itm-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 10px 0px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Force the checkbox itself to stay normal-sized and push to the far right */
+.woodstock-checkbox input[type="checkbox"],
+.itm-checkbox input[type="checkbox"] {
+    width: auto !important;
+    margin: 0 !important;
+    margin-left: auto !important;
+    padding: 0 !important;
+}
+.address-section input { width: 100%; margin-top: 8px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;}
+.address-section textarea { width: 100%; margin-top: 8px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;}
 .loc-btn { background: #007bff; font-size: 1.1rem; color: white; border: none; padding: 10px; width: 100%; border-radius: 4px; margin-top: 10px; cursor: pointer; }
 #location-display { font-size: 1rem; color: #666; display: block; margin-top: 5px; }
 
@@ -947,25 +981,7 @@ body.dark-mode .stat-group:nth-child(2) {
     opacity: 0.7;
 }
 
-.woodstock-checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Keeps everything to the left */
-    gap: 0px;                   /* Space between text and box */
-    cursor: pointer;             /* Makes the whole label clickable */
-    font-family: sans-serif;      
-    margin: 10px 0px;         /* Adds space below the label */
-}
 
-.itm-checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Keeps everything to the left */
-    gap: 0px;                   /* Space between text and box */
-    cursor: pointer;             /* Makes the whole label clickable */
-    font-family: sans-serif;      
-    margin: 10px 0px;         /* Adds space below the label */
-}
 
 
 .theme-popup.show {
