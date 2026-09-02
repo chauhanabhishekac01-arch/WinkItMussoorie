@@ -1949,7 +1949,7 @@ whatsappBtn.addEventListener('click', () => {
         "instant": "Instant Food and Noodles",
         "candies": "Candies",
         "fresh": "Fresh",
-        "adc": "Aa, Dal, and Rice",
+        "adc": "Aata, Dal, and Rice",
         "dbm": "Dairy, Bread, and Milk",
         "mo": "Masalas and Oils",
         "bc": "Baby Care",
@@ -1997,30 +1997,63 @@ whatsappBtn.addEventListener('click', () => {
         });
     });
 
-    // 2. Append grouped categories with margin applied to every sub-line
-    const categoryIndent = "   ";     // Margin for item number + title
-    const itemDetailIndent = "      "; // Margin for lines 2, 3, 4, 5, 6...
-    
-    Object.keys(groupedItems).forEach(cat => {
-        if (groupedItems[cat].length > 0) {
-            msg += `✦ ${cat.toUpperCase()}\n`;
-            groupedItems[cat].forEach(item => {
-                // Line 1: Item number and product name
-                msg += `${categoryIndent}${itemIndex}. ${item.name}\n`;
+    // 2. Append grouped categories using Braille Blank spaces (\u2800) to prevent WhatsApp trimming
+    const brailleSpace = "\u2800";
+    const categoryIndent = `${brailleSpace}\u00A0`; 
+    const itemDetailIndent = `${brailleSpace}\u00A0\u00A0\u00A0\u00A0\u00A0`; 
 
-                // Build details string
-                let detailText = `(${item.unit}) x${item.count} - ₹${item.price}\n${item.gstNote ? item.gstNote.trim() : ""}`;
+   // Helper to manually soft-wrap product names so line breaks include WhatsApp-safe indents
+function formatIndentedName(name, prefix, hangIndent, maxChars = 22) {
+    const words = name.split(' ');
+    let lines = [];
+    let currentLine = '';
 
-                // Split details by line break and apply itemDetailIndent to EVERY line
-                detailText.split('\n').filter(line => line.trim() !== "").forEach(line => {
-                    msg += `${itemDetailIndent}${line}\n`;
-                });
-
-                itemIndex++;
-            });
-            msg += `\n`;
+    words.forEach(word => {
+        if ((currentLine + ' ' + word).trim().length > maxChars) {
+            if (currentLine) lines.push(currentLine);
+            currentLine = word;
+        } else {
+            currentLine = currentLine ? `${currentLine} ${word}` : word;
         }
     });
+    if (currentLine) lines.push(currentLine);
+
+    return lines.map((line, idx) => {
+        return idx === 0 ? `${prefix}${line}` : `${hangIndent}${line}`;
+    }).join('\n');
+}
+
+Object.keys(groupedItems).forEach(cat => {
+    if (groupedItems[cat].length > 0) {
+        msg += `✦ ${cat.toUpperCase()}\n`;
+        groupedItems[cat].forEach(item => {
+            const brailleSpace = "\u2800";
+            const categoryIndent = `${brailleSpace}\u00A0`; 
+            const prefix = `${categoryIndent}${itemIndex}.\u00A0`;
+            
+            // Indent for wrapped product name lines (aligns right under the name)
+            const nameHangIndent = `${brailleSpace}\u00A0\u00A0\u00A0\u00A0`;
+            
+            // Indent for unit/price details
+            const itemDetailIndent = `${brailleSpace}\u00A0\u00A0\u00A0\u00A0\u00A0`; 
+
+            // Format product name with explicit wrapped indents
+            const formattedName = formatIndentedName(item.name, prefix, nameHangIndent, 22);
+            msg += `${formattedName}\n`;
+
+            // Build details string
+            let detailText = `(${item.unit}) x${item.count} - ₹${item.price}\n${item.gstNote ? item.gstNote.trim() : ""}`;
+
+            // Split details by line break and apply detail indent
+            detailText.split('\n').filter(line => line.trim() !== "").forEach(line => {
+                msg += `${itemDetailIndent}${line}\n`;
+            });
+
+            itemIndex++;
+        });
+        msg += `\n`;
+    }
+});
 
     msg += divider;
     msg += `Subtotal: ₹${subtotal}\n`;
